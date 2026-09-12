@@ -239,28 +239,50 @@ def update_context_files(regime, probabilities, ranked_stocks, strategies, date_
 # ==========================================
 def get_expanded_universe():
     return [
-        # 💻 Tecnología, Semis & Software
-        "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "AVGO", "AMD", 
-        "MU", "CRM", "ORCL", "QCOM", "TXN", "INTC", "PANW",
-        
-        # 🚗 Consumo Discrecional & Entretenimiento
-        "TSLA", "NFLX", "DIS", "NKE", "SBUX", "BKNG", "MCD", "AMZN",
-        
-        # 🛒 Consumo Básico & Tabaco
-        "PG", "KO", "PEP", "COST", "WMT", "HD", "MO", "PM", "CL",
-        
-        # 🏦 Financiero & Pagos
-        "JPM", "BAC", "MS", "GS", "V", "MA", "AXP", "C", "BLK",
-        
-        # 🏥 Salud, Pharma & Biotecnología
-        "LLY", "JNJ", "PFE", "UNH", "ABBV", "MRK", "TMO", "AMGN",
-        
-        # ⚡ Energía, Industria & Materiales
-        "XOM", "CVX", "COP", "CAT", "GE", "HON", "LIN", "DE",
-        
-        # 📡 Telecomunicaciones & Utilidades
-        "T", "VZ", "NEE"
-    ]
+       
+    # Tecnología / Magnificent 7 + AI
+    "NVDA", "AAPL", "MSFT", "GOOGL", "GOOG", "AMZN", "META", "TSLA",
+    "AVGO", "AMD", "ORCL", "CRM", "ADBE", "INTC", "QCOM", "TXN",
+    "MU", "AMAT", "LRCX", "KLAC", "SNPS", "CDNS", "NOW", "INTU",
+    "PANW", "CRWD", "SNOW", "PLTR", "ANET",
+
+    # Semiconductores / Hardware adicional
+    "TSM", "ASML", "DELL", "HPE", "HPQ",
+
+    # Financieras
+    "JPM", "BAC", "WFC", "C", "GS", "MS", "BLK", "SCHW",
+    "V", "MA", "AXP", "PYPL", "BRK-B", "SPGI", "MCO",
+
+    # Salud / Farmacéuticas / Biotech
+    "LLY", "UNH", "JNJ", "ABBV", "MRK", "PFE", "AMGN", "GILD",
+    "BMY", "TMO", "DHR", "ISRG", "SYK", "BSX", "MDT", "CI",
+    "ELV", "CVS", "REGN", "VRTX",
+
+    # Consumo Discretionary
+    "HD", "LOW", "NKE", "SBUX", "MCD", "BKNG", "CMG", "TJX",
+    "ROST", "ORLY", "AZO", "ULTA", "MAR", "HLT",
+
+    # Consumo Staples
+    "WMT", "COST", "PG", "KO", "PEP", "PM", "MO", "CL",
+    "KMB", "GIS", "KHC", "MDLZ",
+
+    # Energía
+    "XOM", "CVX", "COP", "EOG", "SLB", "OXY", "MPC", "VLO",
+    "PSX",
+
+    # Industriales
+    "CAT", "DE", "GE", "HON", "UNP", "UPS", "FDX", "BA",
+    "LMT", "RTX", "GD", "NOC", "EMR", "ETN", "ITW", "PH",
+
+    # Comunicaciones / Media
+    "NFLX", "DIS", "CMCSA", "T", "VZ", "TMUS", "CHTR",
+
+    # Utilities / Real Estate / Otros de calidad
+    "NEE", "DUK", "SO", "D", "AEP", "SRE",
+    "AMT", "PLD", "EQIX", "CCI",
+    "IBM", "CSCO", "ACN", "ADP", "PAYX", "FIS", "FISV"
+]
+    
 
 # Eliminamos duplicados por si acaso al concatenar listas
 expanded_universe = list(set(get_expanded_universe()))
