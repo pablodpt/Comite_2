@@ -237,10 +237,38 @@ def update_context_files(regime, probabilities, ranked_stocks, strategies, date_
 # ==========================================
 # PIPELINE PRINCIPAL
 # ==========================================
+def get_expanded_universe():
+    return [
+        # 💻 Tecnología, Semis & Software
+        "AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "AVGO", "AMD", 
+        "MU", "CRM", "ORCL", "QCOM", "TXN", "INTC", "PANW",
+        
+        # 🚗 Consumo Discrecional & Entretenimiento
+        "TSLA", "NFLX", "DIS", "NKE", "SBUX", "BKNG", "MCD", "AMZN",
+        
+        # 🛒 Consumo Básico & Tabaco
+        "PG", "KO", "PEP", "COST", "WMT", "HD", "MO", "PM", "CL",
+        
+        # 🏦 Financiero & Pagos
+        "JPM", "BAC", "MS", "GS", "V", "MA", "AXP", "C", "BLK",
+        
+        # 🏥 Salud, Pharma & Biotecnología
+        "LLY", "JNJ", "PFE", "UNH", "ABBV", "MRK", "TMO", "AMGN",
+        
+        # ⚡ Energía, Industria & Materiales
+        "XOM", "CVX", "COP", "CAT", "GE", "HON", "LIN", "DE",
+        
+        # 📡 Telecomunicaciones & Utilidades
+        "T", "VZ", "NEE"
+    ]
+
+# Eliminamos duplicados por si acaso al concatenar listas
+expanded_universe = list(set(get_expanded_universe()))
+
 def run_pipeline():
-    universe = ["AAPL", "MSFT", "NVDA", "JNJ", "PG", "XOM", "JPM", "LLY"]
+    universe = list(set(get_expanded_universe()))
     
-    logging.info("1. Fetching macro data...")
+    logging.info(f"1. Fetching macro data and scoring {len(universe)} stocks...")
     df, X = fetch_macro_data(period="5y")
     
     logging.info("2. Classifying regime via HMM...")
@@ -257,6 +285,7 @@ def run_pipeline():
     send_telegram_alert(regime, probabilities, strategies, ranked_stocks, date_str)
     
     logging.info(f"Pipeline finished [{date_str}]. Active regime: {regime}")
+ 
 
 if __name__ == "__main__":
     run_pipeline()
